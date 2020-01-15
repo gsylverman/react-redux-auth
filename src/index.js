@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from "./reducers/index";
+import Features from './components/Feature/Features';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 ReactDOM.render(
@@ -15,7 +16,8 @@ ReactDOM.render(
         <Router>
             <App>
                 <Route path="/" exact component={Home} />
-                <Route path="/signup" component={Signup} />
+                <Route path="/signup" exact component={Signup} />
+                <Route path="/features" exact component={Features} />
             </App>
         </Router>
     </Provider>

@@ -15,7 +15,9 @@ class Signup extends Component {
         );
     }
     getValues = (values) => {
-        this.props.authentication(values);
+        this.props.authentication(values, () => {
+            this.props.history.push("/features")
+        });
         this.props.reset();
     }
 
@@ -36,7 +38,7 @@ class Signup extends Component {
                     component={this.renderField}
                 /><br />
                 <div>{this.props.error}</div>
-                
+
                 <button >Login</button>
             </form>
         );
@@ -45,9 +47,7 @@ class Signup extends Component {
 const mapStateToProps = (state) => {
     return {
         error: state.auth.errorMessage
-        
-    }
-
+    };
 };
 const mapDispatchToProps = (dispatch) => {
     // return bindActionCreators({
@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch) => {
     // }, dispatch);
     return {
         reset: () => dispatch(reset("signup")),
-        authentication: (val) => dispatch(authAction(val))
+        authentication: (val, red) => dispatch(authAction(val, red))
     };
 };
 

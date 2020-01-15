@@ -10,7 +10,9 @@ import thunk from 'redux-thunk';
 import rootReducer from "./reducers/index";
 import Features from './components/Feature/Features';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, {
+    auth: { authenticated: localStorage.getItem("token") }
+}, applyMiddleware(thunk));
 ReactDOM.render(
     <Provider store={store}>
         <Router>
